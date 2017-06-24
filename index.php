@@ -20,8 +20,8 @@
         </div>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
 		       <ul class="nav navbar-nav navbar-right">
-			      <li><a href="guest.php"><button type="button"   value=guestbttn name="guest" class="btn btn-primary">guest</button></a></li>
-			      <li><a href="event.php"><button type="button"   value=eventbttn name="event" class="btn btn-primary">soiree</button></a></li>
+			      <li><a href="guest.php"><button type="button"   value=guestbttn name="guest" class="btn btn-primary">GUEST</button></a></li>
+			      <li><a href="event.php"><button type="button"   value=eventbttn name="event" class="btn btn-primary">EVENT</button></a></li>
 			    </ul>
 			    </div>
     		</div>
@@ -154,11 +154,10 @@
 
 
 
-
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
+  <script type="text/javascript" src="main.js"></script>
 
 
     </body>

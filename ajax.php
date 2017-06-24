@@ -8,12 +8,12 @@
 
   case 'event':
 
-  			print json_encode(event($_POST["theme"],$_POST["date"],$_POST["venue"])) ;
+  			print json_encode(event($_POST["event_theme"],$_POST["event_date"],$_POST["event_venue"])) ;
   			break;
 
   case 'guest':
 
-  			print json_encode(guest($_POST["guestname"],$_POST["gemail"])) ;
+  			print json_encode(guest($_POST["guestname"],$_POST["gemail"],$_POST["gender"])) ;
   			break;
 
 

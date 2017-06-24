@@ -13,7 +13,7 @@
         </div>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
 		       <ul class="nav navbar-nav navbar-right">
-			      <li><a href="event.php"><button type="button"   value=eventbttn name="event" class="btn btn-primary">soiree</button></a></li>
+			      <li><a href="event.php"><button type="button"   value=eventbttn name="event" class="btn btn-primary">EVENT</button></a></li>
 			    </ul>
     </div>
   </div>
@@ -89,6 +89,7 @@
 									echo "<td>".$data['id']."</td>";
 									echo "<td>".$data['guestname']."</td>";  //same as mentioned in db
 									echo "<td>".$data['email']."</td>";
+									echo "<td>".$data['gender']."</td>";
 									echo "</tr>";
 									}
 
@@ -112,27 +113,38 @@
 		                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"> X close</button>
 		                <h4 class="modal-title" id="myModalLabel">ADD GUEST</h4>
 		            </div>
-			            <div class="modal-body">
-			                <form>
-			                	 
-				   				 <label for="guest-name" class="col-8 col-form-label"> GUEST's NAME</label>
-								 <div class="col-12">
-				   				 <input class="theme-name form-control" type="text" placeholder="guest's name" name="guestname" id="name"> 
-				   				 </div><br>	   				 <label for="example-email-input" class=" col-form-label"> Email</label>
-							     <div class="col-12">
-				   				 <input class="guest-email form-control" type="text" placeholder="guest email" name="gemail" id="gemail">
-			                	</div><br>
-			                	<label class="radio-inline">
-							      <input type="radio" name="optradio"> male </label>
-								<label class="radio-inline">
-							      	<input type="radio" name="optradio"> female </label>
+		           
+			            
+		            <div class="modal-body">
+		            <div class='container'>
+		            <div class='row'>
+		                
+				          <div class= "col-sm-3 col-lg-4">
+			                  <form id="guest_details">
+					   				 <label for="guest-name" class="col-8 col-form-label"> GUEST's NAME</label>
+									 <div class="col-12">
+					   				 <input class="theme-name form-control" type="text" placeholder="guest's name" name="guestname" id="guestname"> 
+					   				 </div><br>	  
+					   				  <label for="example-email-input" class=" col-form-label"> Email</label>
+								     <div class="col-12">
+					   				 <input class="guest-email form-control" type="text" placeholder="guest email" name="gemail" id="gemail">
+				                	</div><br>
+				                	<label class="radio-inline">
+								      <input type="radio"  value="male"  name="gender"> male </label>
+									<label class="radio-inline">
+								      	<input type="radio"  value="female" name="gender"> female </label>
 
-			                </form>
+				            		<div class="modal-footer">
+				                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				                <button type="button" class="btn btn-primary" id="addnewguest"> add new guests </button>
+				           			 </div>
+			            	</form >
+
+			            
 			            </div>
-			            <div class="modal-footer">
-			                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-			                <button type="button" class="btn btn-primary" id="addnewguest"> add new guests </button>
 			            </div>
+			            </div>
+
 		    </div>
 		 </div>
 	 </div>
@@ -143,10 +155,9 @@
 
 
 
-
-	<script type="main.js"></script>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="main.js"></script>
 </body>
 </html>

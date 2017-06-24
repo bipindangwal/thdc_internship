@@ -28,9 +28,9 @@ function event(){
 				{
 				 echo "not connected to db";
 				}
-    				$theme=@$_POST['theme'];   //call by id
+    				$theme=@$_POST['event_theme'];   //call by id
 				    $date=@$_POST['event_date'];
-				    $venue=$_POST['event_venue'];
+				    $venue=@$_POST['event_venue'];
 			$sql1 = "INSERT INTO eventinfo (theme_name,date,venue) VALUES ('$theme','$date','$venue')";
 
 			   if(!mysqli_query($con1,$sql1))
@@ -57,8 +57,9 @@ $con1=mysqli_connect('localhost','root','','guestinfo');
 
    $guestname=$_POST['guestname'];
 	    $gemail=$_POST['gemail'];
+	    $vv=$_POST['gender'];
 	    
-		$sql2= "INSERT INTO guestlist (guestname,email,response) VALUES ('$guestname','$gemail','PENDING')";
+		$sql2= "INSERT INTO guestlist (guestname,email,gender,response) VALUES ('$guestname','$gemail','$vv','PENDING')";
 
    		if(!mysqli_query($con1,$sql2))
 			{

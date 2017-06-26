@@ -132,6 +132,13 @@
 									echo "<th>";
 										echo "EMAIL ID";
 									echo "</th>";
+									echo "<th>";
+										echo "GENDER";
+									echo "</th>";
+									echo "<th>";
+										echo "CONFIRMATION";
+									echo "</th>";
+
 								echo "</tr>";
 								$con= mysqli_connect('localhost','root', '','guestinfo') or
 								die ("not connected");
@@ -181,16 +188,16 @@
 			                  <form id="guest_details">
 					   				 <label for="guest-name" class="col-8 col-form-label"> GUEST's NAME</label>
 									 <div class="col-12">
-					   				 <input class="theme-name form-control" type="text" placeholder="guest's name" name="guestname" id="guestname"> 
+					   				 <input class="theme-name form-control" type="text" placeholder="guest's name" name="guestname" id="guestname" required> 
 					   				 </div><br>	  
 					   				  <label for="example-email-input" class=" col-form-label"> Email</label>
 								     <div class="col-12">
-					   				 <input class="guest-email form-control" type="text" placeholder="guest email" name="gemail" id="gemail">
+					   				 <input class="guest-email form-control" type="email" placeholder="guest email" name="gemail" id="gemail" required>
 				                	</div><br>
 				                	<label class="radio-inline">
-								      <input type="radio"  value="male"  name="gender"> male </label>
+								      <input type="radio"  value="male"  name="gender" required> male </label>
 									<label class="radio-inline">
-								      	<input type="radio"  value="female" name="gender"> female </label>
+								      	<input type="radio"  value="female" name="gender" required> female </label>
 
 				            		<div class="modal-footer">
 				                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

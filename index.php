@@ -73,8 +73,8 @@
        
            <button type="button"  value=RSVPbttn name="guest" class="btn btn-lg btn-success" data-toggle="modal" 
    data-target="#rsvpModal" >RSVP</button> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-	      <button type="button"   value=REQUESTbttn name="event" class="btn btn-primary" data-toggle="modal" 
-   data-target="#requestModal">REQUEST</button>
+	      <button type="button"  id="requestbttn" value=REQUESTbttn name="event" class="btn btn-primary" data-toggle="modal" 
+   data-target="#requestModal" required>REQUEST</button>
 	</div>
 	</div>
 
@@ -121,22 +121,20 @@
 		            <div class='row'>
 		                
 				                <div class= "col-sm-3 col-lg-4">
-				                 <form id="guest_details" onsubmit="return validate();">
+				                 <form id="guest_details">
 				                	 <label for="GUESTNAME-name" col-form-label">GUESTNAME</label>
-				                	  <input class="USERNAME-name form-control" type="text" placeholder="guestname" name="guestname" id="guestname"> <br>
-				 				        
-				               
+				                	  <input class="USERNAME-name form-control" type="text" placeholder="guestname" name="guestname" id="guestname" required> <br>
 				                	  <label for="example-email-input" class=" col-form-label"> Email</label>
-								    	<input class="form-control" type="email" placeholder="people@coloredcow.com" name="nemail" id="nemail"> <br>
+								    	<input class="form-control" type="email" placeholder="people@coloredcow.com" name="nemail" id="nemail" required> <br>
 								    	<div>
 				 				 <label class="radio-inline">
-				      				<input type="radio" name="ngender" value="male"> male </label>
+				      				<input type="radio" name="ngender" value="male" required> male </label>
 								<label class="radio-inline">
-				      					<input type="radio" name="ngender" value="female"> female </label>
+				      					<input type="radio" name="ngender" value="female" required> female </label>
 				 				</div>    
 					            <div class="modal-footer">
 					                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-					                <button type="button" class="btn btn-primary" id="unknownguest"> request </button> <br>
+					                <button type="button" class="btn btn-primary" id="unknownguest"> REQUEST </button> <br>
 					            </div>
 					         </form>
 		            </div>

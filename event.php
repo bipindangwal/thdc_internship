@@ -95,12 +95,12 @@
 				                <div class= "col-sm-3 col-lg-4">
 				                <form id="event_details">
 				                	 <label for="theme" col-form-label">THEME</label>
-				                	  <input class="USERNAME-name form-control" type="text" placeholder="theme" name="event_theme" id="event_theme"> <br>
+				                	  <input class="USERNAME-name form-control" type="text" placeholder="theme" name="event_theme" id="event_theme" required> <br>
 				 	
 				                	  <label for="example-date-input" class=" col-form-label"> DATE</label>
-								    	<input class="form-control" type="date" placeholder="dd/mm/yy" name="event_date" id="event_date"> <br>
+								    	<input class="form-control" type="date" placeholder="dd/mm/yy" name="event_date" id="event_date" required> <br>
 									<label for="example-venue-input" class=" col-form-label"> VENUE</label>
-										<input class="form-control" type="text" placeholder="venue" name="event_venue" id="event_venue"> <br>		 				 				           
+										<input class="form-control" type="text" placeholder="venue" name="event_venue" id="event_venue" required> <br>		 				 				           
 					            <div class="modal-footer">
 					                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 					                <button type="button" class="btn btn-primary" id="saveevent"> save</button> <br>

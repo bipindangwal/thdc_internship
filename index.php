@@ -5,12 +5,7 @@
 
 	<body>
   
-  <!--   <nav style="background-color: #3AAC76;">
-  
-	 	<div class="container">
-
-	 		<div class="row">	
-			 	<h1 class="navbar-brand"><b>ColoredCow SOIREE </b></h1>  -->
+ 
 <nav class="navbar navbar-default" style="background-color: #4c8ca9";>
           
 <div class='container-fluid'>
@@ -77,7 +72,7 @@
      		<div class= "col-sm-12 col-lg-6"> 
        
            <button type="button"  value=RSVPbttn name="guest" class="btn btn-lg btn-success" data-toggle="modal" 
-   data-target="#rsvpModal" >RSVP</button> &nbsp&nbsp&nbsp&nbsp&nbsp
+   data-target="#rsvpModal" >RSVP</button> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 	      <button type="button"   value=REQUESTbttn name="event" class="btn btn-primary" data-toggle="modal" 
    data-target="#requestModal">REQUEST</button>
 	</div>
@@ -103,7 +98,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Get link</button>
+                <button type="button" class="btn btn-primary">Get links</button>
         </div>
     </div>
     </div>
@@ -126,23 +121,24 @@
 		            <div class='row'>
 		                
 				                <div class= "col-sm-3 col-lg-4">
+				                 <form id="guest_details" onsubmit="return validate();">
 				                	 <label for="GUESTNAME-name" col-form-label">GUESTNAME</label>
 				                	  <input class="USERNAME-name form-control" type="text" placeholder="guestname" name="guestname" id="guestname"> <br>
 				 				        
 				               
 				                	  <label for="example-email-input" class=" col-form-label"> Email</label>
-								    	<input class="form-control" type="email" placeholder="people@coloredcow.com" name="gemail" id="gemail"> <br>
+								    	<input class="form-control" type="email" placeholder="people@coloredcow.com" name="nemail" id="nemail"> <br>
+								    	<div>
 				 				 <label class="radio-inline">
-				      				<input type="radio" name="optradio"> male </label>
+				      				<input type="radio" name="ngender" value="male"> male </label>
 								<label class="radio-inline">
-				      					<input type="radio" name="optradio"> female </label>
+				      					<input type="radio" name="ngender" value="female"> female </label>
 				 				</div>    
-				       				 </div>
-				            </div>
 					            <div class="modal-footer">
 					                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-					                <button type="button" class="btn btn-primary"> Request link</button> <br>
+					                <button type="button" class="btn btn-primary" id="unknownguest"> request </button> <br>
 					            </div>
+					         </form>
 		            </div>
 		       </div>
 		    </div>
@@ -158,7 +154,5 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <script type="text/javascript" src="main.js"></script>
-
-
     </body>
 </html>

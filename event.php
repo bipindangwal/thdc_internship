@@ -16,7 +16,9 @@
        
 		       <ul class="nav navbar-nav navbar-right">
 			      <li><a href="guest.php"><button type="button"   value=guestbttn name="guest" class="btn btn-primary">guest</button></a></li>
-			     
+			    </ul>
+			    <ul class="nav navbar-nav navbar-left">
+			      <li><a href="index.php"><button type="button"   value=eventbttn name="home" class="btn btn-primary">HOME</button></a></li>
 			    </ul>
     		</div>
     		</div>

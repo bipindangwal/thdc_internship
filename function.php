@@ -59,7 +59,30 @@ $con1=mysqli_connect('localhost','root','','guestinfo');
 	    $gemail=$_POST['gemail'];
 	    $vv=$_POST['gender'];
 	    
-		$sql2= "INSERT INTO guestlist (guestname,email,gender,response) VALUES ('$guestname','$gemail','$vv','PENDING')";
+		$sql2= "INSERT INTO guestlist (guestname,email,gender) VALUES ('$guestname','$gemail','$vv')";
+
+   		if(!mysqli_query($con1,$sql2))
+			{
+				echo " data not inserted".mysqli_error($con1);
+			} 
+		else {
+				echo "data is inserted in guest";
+			}			
+	}
+	  function unknownguest(){
+$con1=mysqli_connect('localhost','root','','guestinfo');
+	
+
+ 	if(!mysqli_select_db($con1,'guestinfo'))	//index.guest modal
+		{
+				 echo "not connected to db";
+     	}
+
+   $guestname=$_POST['guestname'];
+	    $gemail=$_POST['nemail'];
+	    $ss=$_POST['ngender'];
+	    
+		$sql2= "INSERT INTO  newguest (guestname,email,gender,response) VALUES ('$guestname','$gemail','$ss','pending')";
 
    		if(!mysqli_query($con1,$sql2))
 			{

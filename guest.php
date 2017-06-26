@@ -15,16 +15,17 @@
 		       <ul class="nav navbar-nav navbar-right">
 			      <li><a href="event.php"><button type="button"   value=eventbttn name="event" class="btn btn-primary">EVENT</button></a></li>
 			    </ul>
+			    <ul class="nav navbar-nav navbar-left">
+			      <li><a href="index.php"><button type="button"   value=eventbttn name="home" class="btn btn-primary">HOME</button></a></li>
+			    </ul>
     </div>
   </div>
  </div>
     </nav>
-
-
-    <div class="container">
+ <div class="container">
      <div calss= "row">
      
-     		<div class= "col-sm-5 col-md-6 col-lg-12"> 
+     		<div class= "col-sm-5 col-md-6 col-lg-12" style="font: 'Oswald'"> 
            
             
           
@@ -54,11 +55,13 @@
      </div>
      </div>
 
-
-<div class="container">
+    <div class="container">
      <div calss= "row">
+      <form id="confirmtable">
      
      		<div class= "col-sm-5 col-md-4 col-lg-8"> 
+
+     		<h1>PREVIOUS GUEST LIST </h1>
 
 
 				<?php
@@ -90,15 +93,70 @@
 									echo "<td>".$data['guestname']."</td>";  //same as mentioned in db
 									echo "<td>".$data['email']."</td>";
 									echo "<td>".$data['gender']."</td>";
-									echo "</tr>";
 									}
-
 							echo"</table>";
 				 ?> 
 				</div>
+			</form>	
 				<div class= "col-sm-12 col-md-4 col-lg-3"> 
 						<button type="button"   value="addguestbttn" name="event" class="btn btn-primary" data-toggle="modal" data-target="#addguestModal">+ADD NEW GUEST</button>
     			</div>
+			</div>
+		</div>
+   
+
+
+   
+
+
+<div class="container">
+     <div calss= "row">
+      <form id="confirmtable">
+     
+     		<div class= "col-sm-5 col-md-4 col-lg-8"> 
+
+     		<h1>NEW GUEST LIST </h1>
+
+
+				<?php
+								    $con= mysqli_connect('localhost','root', '','guestinfo') or
+								die ("not connected");
+							echo "<table class= table table-bordered >";
+								echo "<tr>";
+									echo "<th>";
+										echo "ID";
+									echo "</th>";
+									echo "<th>";
+										echo "GUEST NAME";
+									echo "</th>";
+									echo "<th>";
+										echo "EMAIL ID";
+									echo "</th>";
+								echo "</tr>";
+								$con= mysqli_connect('localhost','root', '','guestinfo') or
+								die ("not connected");
+
+								$sql = "SELECT * FROM newguest ORDER BY id DESC ";
+
+								$record = mysqli_query($con,$sql);
+
+								while ($data= mysqli_fetch_assoc($record))
+								 {
+									echo "<tr>";
+									echo "<td>".$data['id']."</td>";
+									echo "<td>".$data['guestname']."</td>";  //same as mentioned in db
+									echo "<td>".$data['email']."</td>";
+									echo "<td>".$data['gender']."</td>";
+									echo "<td>".$data['response']."</td>";
+									echo "<td>"."<buttton type='button' class='btn btn-success' id='guestacceptbtn'>add</button>"."</td>";
+									echo "<td>"."<buttton type='button' class='btn btn-danger' id='guestdeclinebtn'>Decline</button>"."</td>";
+									echo "</tr>";
+									}
+							echo"</table>";
+				 ?> 
+				</div>
+			</form>	
+				
 			</div>
 		</div>
    

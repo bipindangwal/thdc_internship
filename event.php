@@ -6,23 +6,28 @@
 <body>
 
 
-<nav class="navbar navbar-default" style="background-color: #4c8ca9";>
+<nav class="navbar navbar-default" style="background-color: #ADD8E6";>
           
 <div class='container-fluid'>
 <div class= "col-sm-1 col-md-3 col-lg-12"> 
           <div class="navbar-header">
-              <a href="http://www.coloredcow.com" class="navbar-brand" style="color: white" href="#"></b> ColoredCow</b></a>
+               <a class="navbar-brand"  href="#"> <img src="https://coloredcow.com/wp-content/themes/ColoredCow/dist/img/logo.png" width="190" height="50" class="d-inline-block align-top" alt=""> </a>
         </div>
        
 		       <ul class="nav navbar-nav navbar-right">
-			      <li><a href="guest.php"><button type="button"   value=guestbttn name="guest" class="btn btn-primary">guest</button></a></li>
+			      <li><a href="guest.php"><button type="button"   value=guestbttn name="guest" class="btn btn-primary" style="width: 10em;  height: 3em;" ><span class="glyphicon glyphicon-user"></span>guest</button></a></li>
 			    </ul>
 			    <ul class="nav navbar-nav navbar-left">
-			      <li><a href="index.php"><button type="button"   value=eventbttn name="home" class="btn btn-primary">HOME</button></a></li>
+			      <li><a href="index.php"><button type="button"   value=eventbttn name="home"  class="btn btn-primary" style="width: 10em;  height: 3em;"><span class="glyphicon glyphicon-home"></span> Home</button></a></li>
 			    </ul>
     		</div>
     		</div>
     </nav>
+   <br>
+
+
+ <h1> <center>ADMIN PANEL</center></h1>  <br>
+
 
 <div class='container-fluid'>
 <div  class="row">
@@ -74,7 +79,7 @@
           ?>
        </div>
            <div class= "col-sm-2 col-md-6 col-lg-5"> 
-             <button  type="button"  value=eventttn name="event" class="btn btn-lg btn-primary" data-toggle="modal" data-target="#eventModal" >add event</button>
+             <button  type="button"  value=eventttn name="event" class="btn btn-lg btn-primary" data-toggle="modal" data-target="#eventModal" >+ add new event</button>
             </div>
       
 <!-- code for modal -->

@@ -4,65 +4,37 @@
 </head>
 
 <body>
-<nav class="navbar navbar-default" style="background-color: #4c8ca9";>
-          
-<div class='container-fluid'>
-<div class= "col-sm-1 col-md-6 col-lg-12"> 
-          <div class="navbar-header">
-              <a class="navbar-brand" style="color: white" href="#"></b> ColoredCow</b></a>
-        </div>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-		       <ul class="nav navbar-nav navbar-right">
-			      <li><a href="event.php"><button type="button"   value=eventbttn name="event" class="btn btn-primary">EVENT</button></a></li>
-			    </ul>
-			    <ul class="nav navbar-nav navbar-left">
-			      <li><a href="index.php"><button type="button"   value=eventbttn name="home" class="btn btn-primary">HOME</button></a></li>
-			    </ul>
-    </div>
-  </div>
- </div>
-    </nav>
- <div class="container">
-     <div calss= "row">
-     
-     		<div class= "col-sm-5 col-md-6 col-lg-12" style="font: 'Oswald'"> 
-           
-            
-          
-                 	<?php
+<nav class="navbar navbar-default" style="background-color: #ADD8E6; position: fixed; top: 0; width: 100%;z-index: 1;">
+          <div class='container-fluid'>
+			
+          		<div class="navbar-header">
+              			 <a class="navbar-brand"  href="#"> <img src="https://coloredcow.com/wp-content/themes/ColoredCow/dist/img/logo.png" width="190" height="50" class="d-inline-block align-top" alt=""> </a>
+        		</div>
+	    			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+	    			<ul class="nav navbar-nav navbar-left">
+				      		<li><a href="index.php"><button type="button"   value=eventbttn name="home" class="btn btn-primary"><span class="glyphicon glyphicon-home"></span> Home</button></a></li>
+				    	</ul>
 
-				      $con= mysqli_connect('localhost','root','','event') or die("error in connection");
+			       		<ul class="nav navbar-nav navbar-right">
+				      		<li><a href="event.php"><button type="button"   value=eventbttn name="event" class="btn btn-primary"> <span class="glyphicon glyphicon-cutlery"></span> EVENT</button></a></li>
+				    	</ul>
+	    	
+ 		   </div>
 
-					  $sql= "select * from eventinfo";
+ </nav><hr>
 
-					  $record= mysqli_query($con,$sql);
+ <hr><br>
 
-				 		$data = mysqli_fetch_array($record);
-				 		   
-				 			echo "<h2>";
-				 			echo " THEME :- ".$data['theme_name'];
-				 			echo "<br>";
-				 			echo " DATE :- ".$data['date'];
-				 			echo "<br>";
-				 			echo " VENUE :- ".$data['venue'];
-				 			echo "<br>";
-				 			echo "</h2>"; 
-				 		
-   			        ?>
-   			<hr>
-                 	
-       </div>
-     </div>
-     </div>
+ <h1> <center>ADMIN PANEL</center></h1>
 
-    <div class="container">
+    <div class="container-fluid">
      <div calss= "row">
       <form id="confirmtable">
      
-     		<div class= "col-sm-5 col-md-4 col-lg-8"> 
+     		<div class= "col-sm-11 col-md-8 col-lg-6"> 
 
-     		<h1>PREVIOUS GUEST LIST </h1>
-
+     		<h3 style="font-family: georgia;">UPCOMING EVENT GUEST LIST </h3><br>
+     		<div style="margin-right: 3px">
 
 				<?php
 								    $con= mysqli_connect('localhost','root', '','guestinfo') or
@@ -77,6 +49,12 @@
 									echo "</th>";
 									echo "<th>";
 										echo "EMAIL ID";
+									echo "</th>";
+									echo "<th>";
+										echo "gender";
+									echo "</th>";
+									echo "<th>";
+										echo "status";
 									echo "</th>";
 								echo "</tr>";
 								$con= mysqli_connect('localhost','root', '','guestinfo') or
@@ -93,29 +71,17 @@
 									echo "<td>".$data['guestname']."</td>";  //same as mentioned in db
 									echo "<td>".$data['email']."</td>";
 									echo "<td>".$data['gender']."</td>";
+									echo "<td>".$data['status']."</td>";
 									}
 							echo"</table>";
 				 ?> 
+				 </div>
 				</div>
-			</form>	
-				<div class= "col-sm-12 col-md-4 col-lg-3"> 
-						<button type="button"   value="addguestbttn" name="event" class="btn btn-primary" data-toggle="modal" data-target="#addguestModal">+ADD NEW GUEST</button>
-    			</div>
-			</div>
-		</div>
-   
 
+		<div class= "col-sm-11 col-md-8 col-lg-6"> 
+		<div style="margin-left: 80px">
 
-   
-
-
-<div class="container">
-     <div calss= "row">
-      <form id="confirmtable">
-     
-     		<div class= "col-sm-5 col-md-4 col-lg-8"> 
-
-     		<h1>NEW GUEST LIST </h1>
+     		   <h3 style="font-family: georgia;"">REQUESTED INVITES </h3> <br>
 
 
 				<?php
@@ -147,25 +113,26 @@
 
 								$record = mysqli_query($con,$sql);
 
-								while ($data= mysqli_fetch_assoc($record))
+								while ($row= mysqli_fetch_assoc($record))
 								 {
-									echo "<tr>";
-									echo "<td>".$data['id']."</td>";
-									echo "<td>".$data['guestname']."</td>";  //same as mentioned in db
-									echo "<td>".$data['email']."</td>";
-									echo "<td>".$data['gender']."</td>";
-									echo "<td>".$data['response']."</td>";
-									echo "<td>"."<buttton type='button' class='btn btn-success' id='guestacceptbtn'>add</button>"."</td>";
-									echo "<td>"."<buttton type='button' class='btn btn-danger' id='guestdeclinebtn'>Decline</button>"."</td>";
-									echo "</tr>";
+									echo '<tr>
+											<td class="newguestid"> '.$row['id']. '</td>
+											<td> '.$row['guestname']. '</td>
+											<td> '.$row['email']. '</td>
+											<td> '.$row['gender']. '</td>
+											<td> '.$row['status']. '</td>
+											<td> <button type=button  class="edit" > EDIT </button></td>
+											</tr>';
 									}
-							echo"</table>";
+							echo"</table>"; 
 				 ?> 
+				</div>	
 				</div>
-			</form>	
+			</form>
 				
 			</div>
 		</div>
+  
    
     <!-- adding guest through modal -->
 
@@ -216,7 +183,9 @@
   </div>
 </div>
 
-
+		<br>			<div> 
+						<button type="button"   value="addguestbttn" name="event" class="btn btn-primary" data-toggle="modal" data-target="#addguestModal">+ADD NEW GUEST</button>
+    			</div>
 
 
 
@@ -225,4 +194,5 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <script type="text/javascript" src="main.js"></script>
 </body>
+
 </html>

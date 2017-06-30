@@ -1,5 +1,47 @@
 $(document).ready(function()
-{
+{ 
+    $(".edit").click(function(){
+     console.log("inside edit2 event click ");
+     var row = $(this).closest("tr");    // Find the row
+    var text = row.find(".newguestid").text(); // Find the text      
+
+    $.ajax({
+        type: "POST",
+         url: "function.php",
+         data: {newguestid:text},
+         success: function(result){
+            alert(result);
+         }
+
+
+    });
+
+return
+    });
+
+  
+$("#guestrsvp").click(function(){
+    var emailadd= $("#getlink");
+     if(!emailadd[0].checkValidity())
+        {
+            emailadd[0].reportValidity();
+            return;
+        }
+            var email= $('#savedemail').val();
+               $.ajax({
+                type: "POST",
+                url: "function.php",
+                data: {add:email},
+                success: function(result){
+                    alert(result);
+                    
+                }
+            });
+
+});
+
+
+
 
     $("#saveevent").click(function(){    
         console.log("inside save event click ");                                                                        //button call through id
@@ -30,7 +72,7 @@ $(document).ready(function()
 
 
     $("#addnewguest").click(function(){    
-        console.log("inside click ");                            
+        console.log("inside click addnew guest");                            
         var formdata= $('#guest_details');
         if(!formdata[0].checkValidity()){
             formdata[0].reportValidity();

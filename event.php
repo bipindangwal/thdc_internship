@@ -3,8 +3,7 @@
 <head>
 	<title>events details</title>
 </head>
-<body>
-
+<body id="eventbody">
 
 <nav class="navbar navbar-default" style="background-color: #ADD8E6";>
           

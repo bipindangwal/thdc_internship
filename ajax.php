@@ -21,8 +21,19 @@
   			print json_encode(unknownguest($_POST["guestname"],$_POST["nemail"],$_POST["ngender"])) ;
   			break;
 
+  case 'rsvp':
+        print json_encode(rsvplink($_POST["savedemail"])) ;
+        break;
+case 'idrupdate':
 
- default:  echo"invalid entery";
+          print json_encode(idupdates($_POST["idupdates"])) ;
+          break;
+  case 'updateguest':
+
+            print json_encode(updatingguest($_POST["id"])) ;
+          break;
+
+ default:  echo"invalid entry";
  	break;
 
 }

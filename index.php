@@ -68,7 +68,7 @@
    			
                  	
    			        <!-- </div>
-   			        </div> -->
+			        </div> -->
    			</div>
 
             </div>
@@ -81,7 +81,7 @@
      <div class= "container">
      	<div class= "col-sm-3 col-lg-6"> 
             <div>
-             <h4>  <b>I WANT TO BE HERE </h4>
+             <h4>  <b>I WANT TO BE THERE </h4>
 	           <button type="button"  value=RSVPbttn name="guest" class="btn btn-lg btn-success" data-toggle="modal" 
 	  			 data-target="#rsvpModal" style="width: 8em;  height: 2.4em;" >RSVP</button>  &nbsp;&nbsp;&nbsp;
 	  			 </div>
@@ -105,22 +105,32 @@
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true"> X close</button>
             <h4 class="modal-title" id="myModalLabel">verify your email</h4>
             </div>
-          <form id="getlink">
             <div class="modal-body">
+            <form id="getlink">
                 	 <label for="example-email-input" class=" col-form-label"> Email</label>
 				      
 				       <input class="form-control" type="email" placeholder="people@coloredcow.com" name="savedemail" id="savedemail" required>
+            </form>
+            <p id="linkmsg"></p>
             </div>
+            
             <div class="modal-footer">
+
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" id="guestrsvp">Get links</button>
+                <button type="button" class="btn btn-primary"  id="getlinkrsvp">Get links</button>
         </div>
-        </form>
     </div>
     </div>
     </div>
   </div>
 </div>
+
+<
+
+
+
+
+
 <!-- modal code for request -->
   <div class= "container">
 	<div class= "col-sm-12 col-lg-6"> 

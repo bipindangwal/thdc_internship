@@ -66,17 +66,66 @@
 
 								while ($data= mysqli_fetch_assoc($record))
 								 {
-									echo "<tr>";
-									echo "<td>".$data['id']."</td>";
-									echo "<td>".$data['guestname']."</td>";  //same as mentioned in db
-									echo "<td>".$data['email']."</td>";
-									echo "<td>".$data['gender']."</td>";
-									echo "<td>".$data['status']."</td>";
+								         
+								        echo "<tr>";
+										echo "<td>".$data['id']."</td>";  
+								        echo "<td>".$data['guestname']."</td>";
+								        echo "<td>".$data['email']."</td>";
+								        echo "<td>".$data['gender']."</td>"; 
+								        echo "<td>".$data['status']."</td>";
+
+								        echo "<td><button id=".$data['id']." type='button' data-toggle='modal' data-target='#editmodal' class='guestupdate btn btn-primary' >Edit</button> </td>";
+
+								         echo "</tr>";
+
+
+
+
 									}
+
 							echo"</table>";
+
 				 ?> 
-				 </div>
-				</div>
+</div>
+</div>
+<div class="modal fade" id="editmodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+       <label for="guest-name" class="col-8 col-form-label"> GUEST's NAME</label>
+									 <div class="col-12">
+					   				 <input class="theme-name form-control" type="text" name="guestname" id="mguestname" required> 
+					   				 </div><br>	  
+					   				  <label for="example-email-input" class=" col-form-label"> Email</label>
+								     <div class="col-12">
+					   				 <input class="guest-email form-control" type="email"  name="memail" id="memail" required>
+				                	</div><br>
+				                	<label class="radio-inline">
+								      <input type="radio"  value="male"  name="mgender" required> male </label>
+									<label class="radio-inline">
+								      	<input type="radio"  value="female" name="mgender" required> female </label>
+								     <div class="col-12">
+								    <input class="guest-status form-control" type="text"  name="status" id="mstatus">
+				                	</div><br>		
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">UPDATE</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+    <!-- adding guest through modal -->
+
+
+
 
 		<div class= "col-sm-11 col-md-8 col-lg-6"> 
 		<div style="margin-left: 80px">
@@ -133,7 +182,10 @@
 			</div>
 		</div>
   
-   
+   	<div> 
+						<button type="button"   value="addguestbttn" name="event" class="btn btn-primary" data-toggle="modal" data-target="#addguestModal">+ADD NEW GUEST</button>
+    			</div>
+
     <!-- adding guest through modal -->
 
     <div class= "container">
@@ -183,10 +235,7 @@
   </div>
 </div>
 
-		<br>			<div> 
-						<button type="button"   value="addguestbttn" name="event" class="btn btn-primary" data-toggle="modal" data-target="#addguestModal">+ADD NEW GUEST</button>
-    			</div>
-
+		<br>		
 
 
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">

@@ -46,7 +46,7 @@ $con1=mysqli_connect('localhost','root','','guestinfo');
 				return" data not inserted".mysqli_error($con1);
 			} 
 		else {
-				return "data is inserted in guest";
+				return "data is inserted in guest";	
 			}			
 	}
 	
@@ -75,6 +75,75 @@ $con1=mysqli_connect('localhost','root','','guestinfo');
 			}	
 
 	}
+
+function rsvplink()
+{
+	$con1=mysqli_connect('localhost','root','','guestinfo');
+	
+
+ 	if(!mysqli_select_db($con1,'guestinfo'))	//index.guest modal
+		{
+				 return "not connected to db";
+     	}
+     	$x=$_POST["savedemail"];
+	  $sql="SELECT email from guestlist WHERE email= '$x'";
+		$data= mysqli_query($con1,$sql);
+		$value= mysqli_fetch_assoc($data);
+		 $a=$value['email'];
+
+
+		 if($a=='')
+			{
+				return "YOU ARE NEW TO US KINDLY PRESS 'CLICK HERE' button"; //return is used to remove null
+			} 
+		else {
+			    
+			    $randomcode= rand();
+			    $con1=mysqli_connect('localhost','root','','guestinfo');
+	
+			 	if(!mysqli_select_db($con1,'guestinfo'))	//index.guest modal
+					{
+							 return "not connected to db";
+			     	}
+				  $sql2="UPDATE guestlist SET randomcode='$randomcode' WHERE email= '$x'";
+				  $data2= mysqli_query($con1,$sql2);
+				  $out= base64_encode($randomcode);
+
+
+
+
+				$output= ''; //to make blank variable
+				$output .="<a href='secure.php?code=$out'>Click Here</a>"; 
+				echo $output;
+			}
+	
+
+
+}
+
+function idupdates(){
+
+      $codeid=$_POST['idupdates'];
+
+      $con1=mysqli_connect('localhost','root','','guestinfo');
+				if(!mysqli_select_db($con1,'guestinfo'))	
+					{
+							 return "not connected to db";
+			     	}
+
+			  $sql="UPDATE guestlist SET status='CONFIRM' where randomcode= '$codeid'";
+			  	if(!$data2= mysqli_query($con1,$sql))
+			  	{
+			  		return 'error , either your presence is confirmed or your url is wrong';
+			  	}
+			  	else
+			  	{
+			  		return 'you status is confirmed please close the window';
+			  	}
+
+
+}
+
 
 
  if (isset ($_POST['newguestid']))
@@ -115,54 +184,30 @@ $con1=mysqli_connect('localhost','root','','guestinfo');
            
 
 }
-if (isset ($_POST['add']))
- {
- 	    $guestemail= $_POST['add'];
- 	   
 
-
-			$con1=mysqli_connect('localhost','root','','guestinfo');
+function updatingguest()
+{
+	$guestid=$_POST['id'];
+	$con1=mysqli_connect('localhost','root','','guestinfo');
+				if(!mysqli_select_db($con1,'guestinfo'))	
+					{
+							 return "not connected to db";
+			     	}$con1=mysqli_connect('localhost','root','','guestinfo');
 				if(!mysqli_select_db($con1,'guestinfo'))	
 					{
 							 return "not connected to db";
 			     	}
+             $sqla=" SELECT guestname,email,gender,status FROM guestlist where id='$guestid' ";
+             $data2= mysqli_query($con1,$sqla);
+			$row = mysqli_fetch_assoc($data2);  //fetch
+				
+				    $a= $row['guestname'];
+				    $b = $row['email'];
+				    $c= $row['status'];
+				    $d=$row['gender'];
+				
+		return ($a.",".$b.",".$c);
 
-			  $sql="SELECT email from guestlist WHERE email='$guestemail'";
-			   		$data= mysqli_query($con1,$sql);
-			   	
-			   		$row = mysqli_fetch_assoc($data);
-			   		$x=$row["email"];
-
-
-
-			  $sql2= "SELECT guestname From guestlist WHERE email='$guestemail' ";
-			  $data2= mysqli_query($con1,$sql2);
-			
-			   		$row2 = mysqli_fetch_assoc($data2);
-			   		$y=$row2["guestname"];
-
-			   if($x=="")
-			   {
-			   	 echo "YOU ARE NEW TO US KINDLY PRESS 'CLICK HERE' button";
-			   }
-
-			   else if ($x==$guestemail)
-			   {
-
-			   	$token= hash('sha512',$x.$y);
-			  				
-			   	$sql3= "UPDATE guestlist SET code='$token' WHERE email='$guestemail' ";
-			   	$data3= mysqli_query($con1,$sql3);
-
-			   	$sql4="SELECT code from guestlist where code='$token'";
-			   	$data4= mysqli_query($con1,$sql4);
-			   	$row3 = mysqli_fetch_assoc($data4);
-			   	$code= $row3["code"];
-				die(http://localhost/rsvpproject/);
-
-
-
-			   	}
 }
 			 
 ?>

@@ -1,5 +1,7 @@
 $(document).ready(function()
 { 
+
+
     $(".edit").click(function(){
      console.log("inside edit2 event click ");
      var row = $(this).closest("tr");    // Find the row
@@ -19,22 +21,62 @@ $(document).ready(function()
 return
     });
 
+$(".guestupdate").click(function(){
+var recievedid=$(this).attr("id");
+var action= "updateguest";
+$.ajax({
+        type: "POST",
+         url: "ajax.php",
+         data: {action:action,id:recievedid},
+         success: function(value){
+            var data=value.split(",");//split where there is ,
+            $('#mguestname').val(data[0]) ;
+             $('#memail').val(data[1]) ;
+              $('#mstatus').val(data[2]) ;
+              document.getelementByName('mgender').val(data[3]);
+                    }
+
+
+    });
+
+});
+
+
+$(".updateresponse").click(function(){   ///button call secure.php
+    var idupdate=$(this).attr("id");
+    var action="idrupdate";
+    console.log(idupdate);
+    $.ajax({
+        type: "POST",
+         url: "ajax.php",
+         data: {action:action,idupdates:idupdate},
+         success: function(result){
+            alert(result);
+         }
+
+
+    });
+   
+});
+
+
   
-$("#guestrsvp").click(function(){
+$("#getlinkrsvp").click(function(){
     var emailadd= $("#getlink");
+    var action= "rsvp";
      if(!emailadd[0].checkValidity())
         {
             emailadd[0].reportValidity();
             return;
         }
-            var email= $('#savedemail').val();
+            var savedemail= $('#savedemail').val();
                $.ajax({
                 type: "POST",
-                url: "function.php",
-                data: {add:email},
+                url: "ajax.php",
+                data: {action:action,savedemail:savedemail},
                 success: function(result){
-                    alert(result);
-                    
+
+                    document.getElementById("linkmsg").innerHTML=result;
                 }
             });
 
@@ -122,5 +164,6 @@ $("#guestrsvp").click(function(){
         
     return false;
 });
+
 
 })

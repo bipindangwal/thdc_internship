@@ -26,8 +26,8 @@ function event(){
 			}
 
    
-   function guest(){
-$con1=mysqli_connect('localhost','root','','guestinfo');
+function guest() {
+    $con1=mysqli_connect('localhost','root','','guestinfo');
 	
 
  	if(!mysqli_select_db($con1,'guestinfo'))	//error when dbnot selected
@@ -50,8 +50,9 @@ $con1=mysqli_connect('localhost','root','','guestinfo');
 			}			
 	}
 	
- function unknownguest(){
-$con1=mysqli_connect('localhost','root','','guestinfo');
+function unknownguest()
+ {
+   $con1=mysqli_connect('localhost','root','','guestinfo');
 	
 
  	if(!mysqli_select_db($con1,'guestinfo'))	//index.guest modal
@@ -77,7 +78,7 @@ $con1=mysqli_connect('localhost','root','','guestinfo');
 	}
 
 function rsvplink()
-{
+  {
 	$con1=mysqli_connect('localhost','root','','guestinfo');
 	
 
@@ -147,7 +148,7 @@ function idupdates(){
 
 
  if (isset ($_POST['newguestid']))
- {
+    {
 
 			$newguestid= $_POST['newguestid'];
 			$con1=mysqli_connect('localhost','root','','guestinfo');
@@ -156,22 +157,22 @@ function idupdates(){
 							 return "not connected to db";
 			     	}
 
-			  $sql="UPDATE newguest SET status='confirm' WHERE id='$newguestid'";
-			   		$data= mysqli_query($con1,$sql);
 
-			$sqla=" SELECT guestname,email,gender,status FROM newguest where status='confirm' ";
+			$sqla=" SELECT * FROM newguest where id='$newguestid' ";
 			$data2= mysqli_query($con1,$sqla);
-			while ($row = mysqli_fetch_assoc($data2))  //fetch
-				{
+			$row = mysqli_fetch_assoc($data2);  //fetch
 				    $a= $row['guestname'];
 				    $b = $row['email'];
-				    $c= $row['status'];
 				    $d=$row['gender'];
-				}
-			 $sqlb="INSERT INTO guestlist (guestname,email,status,gender,code) VALUES ('$a','$b','$c','$d','') ";
-			$data3= mysqli_query($con1,$sqlb);
+			 $sqlb="INSERT INTO guestlist (guestname,email,status,gender) VALUES ('$a','$b','CONFIRM','$d')";
+			
 
-			$sqld= "DELETE FROM newguest WHERE status='confirm'"; 
+				if(!mysqli_query($con1,$sqlb))
+					{ echo"error";
+					}
+				else
+				{		
+			$sqld= "DELETE FROM newguest WHERE id='$newguestid'"; 
 
 						 if(!mysqli_query($con1,$sqld))
 						 {
@@ -182,10 +183,10 @@ function idupdates(){
 							echo "data is inserted and deleted in guest";
 						}	
            
-
+						}
 }
 
-function updatingguest()
+function updating_guest()
 {
 	$guestid=$_POST['id'];
 	$con1=mysqli_connect('localhost','root','','guestinfo');
@@ -206,8 +207,207 @@ function updatingguest()
 				    $c= $row['status'];
 				    $d=$row['gender'];
 				
-		return ($a.",".$b.",".$c);
+		echo $a.",".$b.",".$c;
 
 }
+
+function updating()
+
+		{
+			$con1=mysqli_connect('localhost','root','','guestinfo');
+			 if (!$con1) //connection esblished/not established
+				 {
+				 return "not connected to server";
+				}
+			if(!mysqli_select_db($con1,'guestinfo'))	//error when dbnot selected
+				{
+				 return "not connected to db";
+				}
+   		$guestname=$_POST['mguestname'];
+	    $gemail=$_POST['memail'];
+	    $sex=$_POST['mgender'];
+	    $status=$_POST['mstatus'];
+	    
+		$sql2= "UPDATE guestlist SET guestname='$guestname',gender='$sex',status='$status'
+						WHERE email='$gemail' ";
+
+   		if(!mysqli_query($con1,$sql2))
+			{
+				return" data is not updateded".mysqli_error($con1);
+			} 
+		else {
+				return "data is updated";	
+			}			
+	    
+
+}	
+function eventupdate()
+	{
+		$eventid=$_POST['id'];
+		$con1=mysqli_connect('localhost','root','','event');
+				if(!mysqli_select_db($con1,'event'))	
+					{
+							 return "not connected to db";
+			     	}
+             $sqla=" SELECT * FROM eventinfo where id='$eventid' ";
+             $data2= mysqli_query($con1,$sqla);
+			$row = mysqli_fetch_assoc($data2);  //fetch
+				
+				    $a= $row['theme_name'];
+				    $b = $row['date'];
+				    $c= $row['venue'];
+				   	$d= $row['id'];
+				
+		echo $a.",".$b.",".$c.",".$d;
+
+	}
+
+function event_delete()
+	{
+		$eventid=$_POST['event_id'];
+		$con1=mysqli_connect('localhost','root','','event');
+		if(!mysqli_select_db($con1,'event'))	
+					{
+							 return "not connected to db";
+			     	}
+			 $query= "DELETE FROM eventinfo WHERE id= '$eventid' ";
+
+			if(!mysqli_query($con1,$query))
+			{
+				echo "query is not executed";
+			}
+			else{
+
+				echo "event is deleted";
+			}			
+	}
+
+	
+function guest_delete()
+	{
+		$guestid=$_POST['guest_id'];
+			$con1=mysqli_connect('localhost','root','','guestinfo');
+				if(!mysqli_select_db($con1,'guestinfo'))	
+					{
+							 return "not connected to db";
+			     	}
+
+
+			$sqla=" SELECT * FROM guestlist where id='$guestid' ";
+			$data2= mysqli_query($con1,$sqla);
+			$row = mysqli_fetch_assoc($data2);  //fetch
+				    $a= $row['guestname'];
+				    $b = $row['email'];
+				    $c=$row['gender'];
+			 $sqlb="INSERT INTO deletedrecords(name,email,gender) VALUES ('$a','$b','$c')";
 			 
+				if(!mysqli_query($con1,$sqlb))
+					{ echo $con1->error; //checking error
+					}
+				else
+				{		
+			$sqld= "DELETE FROM guestlist WHERE id='$guestid'"; 
+
+						 if(!mysqli_query($con1,$sqld))
+						 {
+							echo "data is not deletedt";
+						}
+
+						else{ 
+							echo "data is moved to bin";
+						}	
+           
+						}
+	}	 
+function deleterequestingguest()
+	{
+		$guestid=$_POST["guest_id"];
+			$con1=mysqli_connect('localhost','root','','guestinfo');
+				if(!mysqli_select_db($con1,'guestinfo'))	
+					{
+							 return "not connected to db";
+			     	}
+
+
+			$sqla=" SELECT * FROM newguest where id='$guestid' ";
+			
+			$data4= mysqli_query($con1,$sqla);
+			$row = mysqli_fetch_assoc($data4);  //fetch
+				    $a= $row['guestname'];
+				    $b = $row['email'];
+				    $c=$row['gender'];
+			 $sqlb="INSERT INTO deletedrecords(name,email,gender) VALUES ('$a','$b','$c')";
+			 
+				if(!mysqli_query($con1,$sqlb))
+					{ echo $con1->error; //checking error
+					}
+				else
+				{		
+					$sqld= "DELETE FROM newguest WHERE id='$guestid'"; 
+
+						 if(!mysqli_query($con1,$sqld))
+						 {
+							echo "data is not deleted";
+						}
+
+						else{ 
+							echo "data is moved to bin from newguest table";
+						}	
+           
+				}
+	}
+
+function fetch_guest_db(){
+   $con= mysqli_connect('localhost','root', '','guestinfo') or
+								die ("not connected");
+							echo "<table class= table table-bordered >";
+								echo "<tr>";
+									echo "<th>";
+										echo "ID";
+									echo "</th>";
+									echo "<th>";
+										echo "GUEST NAME";
+									echo "</th>";
+									echo "<th>";
+										echo "EMAIL ID";
+									echo "</th>";
+									echo "<th>";
+										echo "gender";
+									echo "</th>";
+									echo "<th>";
+										echo "status";
+									echo "</th>";
+								echo "</tr>";
+								$con= mysqli_connect('localhost','root', '','guestinfo') or
+								die ("not connected");
+
+								$sql = "SELECT * FROM guestlist ORDER BY id DESC ";
+
+								$record = mysqli_query($con,$sql);
+
+								while ($data= mysqli_fetch_assoc($record))
+								 {
+								         
+								        echo "<tr>";
+										echo "<td>".$data['id']."</td>";  
+								        echo "<td>".$data['guestname']."</td>";
+								        echo "<td>".$data['email']."</td>";
+								        echo "<td>".$data['gender']."</td>"; 
+								        echo "<td>".$data['status']."</td>";
+
+								        echo "<td><button id=".$data['id']." type='button' data-toggle='modal' data-target='#editmodal' class='guestupdate btn btn-primary' >Edit</button> </td>";
+								        echo "<td><button id=".$data['id']." type='button' class='deleteguest btn btn-danger' >Delete</button> </td>";
+
+								         echo "</tr>";
+
+
+
+
+									}
+
+							echo"</table>";
+							}
 ?>
+
+
+

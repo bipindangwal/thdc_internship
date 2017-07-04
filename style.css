@@ -9,4 +9,12 @@
   border: 1px solid black;
   opacity: 1;
 }
+.divider{
+    position:absolute;
+    left:50%;
+    top:10%;
+    bottom:20%;
+    border-left:1px;
+    color: black;
+}
 

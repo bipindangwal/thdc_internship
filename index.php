@@ -5,7 +5,7 @@
 	<link href="https://fonts.googleapis.com/css?family=Tangerine" rel="stylesheet">
 	</head>
 
-	<body>
+	<body style="background-color: ">
   
  
 <nav class="navbar " style="background-color: #ADD8E6"; "position: fixed";>
@@ -39,9 +39,9 @@
    
      		<div class= "col-sm- col-md- col-lg-12"> 
            
-           <H2> UPCOMING SOIREE</H2>
+           <H2 style="color:" ><b> UPCOMING SOIREE</b></H2> <br> 
            
-            <div class="transbox">
+            <div class="transbox" style="color: #B11C54;">
               
                  	<?php
 
@@ -83,7 +83,7 @@
             <div>
              <h4>  <b>I WANT TO BE THERE </h4>
 	           <button type="button"  value=RSVPbttn name="guest" class="btn btn-lg btn-success" data-toggle="modal" 
-	  			 data-target="#rsvpModal" style="width: 8em;  height: 2.4em;" >RSVP</button>  &nbsp;&nbsp;&nbsp;
+	  			 data-target="#rsvpModal" style="width: 8em;  height: 2.4em;" >GET LINK</button>  &nbsp;&nbsp;&nbsp;
 	  			 </div>
 	  		</div>
 	  		<div class= "col-sm- col-lg-6"> 	 
@@ -117,7 +117,7 @@
             <div class="modal-footer">
 
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary"  id="getlinkrsvp">Get links</button>
+                <button type="button" class="btn btn-primary"  id="getlinkrsvp">Get link</button>
         </div>
     </div>
     </div>
@@ -157,7 +157,11 @@
 				      				<input type="radio" name="ngender" value="male" required> male </label>
 								<label class="radio-inline">
 				      					<input type="radio" name="ngender" value="female" required> female </label>
-				 				</div>    
+				 				</div>  
+				 				<div>
+				 				<br>
+				 				<p id="requestpara" style="color: Red"></p>
+				 				</div>  
 					            <div class="modal-footer">
 					                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 					                <button type="button" class="btn btn-primary" id="unknownguest"> REQUEST </button> <br>

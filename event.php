@@ -8,19 +8,21 @@
 <nav class="navbar navbar-default" style="background-color: #ADD8E6";>
           
 <div class='container-fluid'>
-<div class= "col-sm-1 col-md-3 col-lg-12"> 
+
           <div class="navbar-header">
                <a class="navbar-brand"  href="#"> <img src="https://coloredcow.com/wp-content/themes/ColoredCow/dist/img/logo.png" width="190" height="50" class="d-inline-block align-top" alt=""> </a>
         </div>
-       
+       		<div class="collapse navbar-collapse" id="navbarSupportedContent">
+       		 <ul class="nav navbar-nav navbar-left">
+			      <li><a href="index.php"><button type="button"   value=eventbttn name="home"  class="btn btn-primary" style="width: 10em;  height: 3em;"><span class="glyphicon glyphicon-home"></span> Home</button></a></li>
+			    </ul>
 		       <ul class="nav navbar-nav navbar-right">
 			      <li><a href="guest.php"><button type="button"   value=guestbttn name="guest" class="btn btn-primary" style="width: 10em;  height: 3em;" ><span class="glyphicon glyphicon-user"></span>guest</button></a></li>
 			    </ul>
-			    <ul class="nav navbar-nav navbar-left">
-			      <li><a href="index.php"><button type="button"   value=eventbttn name="home"  class="btn btn-primary" style="width: 10em;  height: 3em;"><span class="glyphicon glyphicon-home"></span> Home</button></a></li>
-			    </ul>
+			   
     		</div>
-    		</div>
+    		
+    	</div>	
     </nav>
    <br>
 
@@ -30,7 +32,7 @@
 
 <div class='container-fluid'>
 <div  class="row">
-<div class= "col-sm-1 col-md-5 col-lg-7"> 
+<div class= "col-sm-10 col-md-12 col-lg-6"> 
 <?php
 		$con1=mysqli_connect('localhost','root','','event');
 			 if (!$con1) //connection esblished/not established
@@ -69,18 +71,26 @@
 					echo "<td>".$data['theme_name']."</td>";  //same as mentioned in db
 					echo "<td>".$data['date']."</td>";
 					echo "<td>".$data['venue']."</td>";
+					
+					echo "<td><button id=".$data['id']." type='button' data-toggle='modal' data-target='#editeventmodal' class='eventupdate btn btn-primary' >Edit event</button> </td>";
+					echo "<td><button id=".$data['id']." type='button' class='deleteevent btn btn-danger' >DELETE event</button> </td>";
 					echo "</tr>";
-					}
+				}
 
 	echo"</table>";
 
 
           ?>
-       </div>
-           <div class= "col-sm-2 col-md-6 col-lg-5"> 
+       </div> 
+       <div class= "col-sm-12 col-md-8 col-lg-6" align="center"> 
              <button  type="button"  value=eventttn name="event" class="btn btn-lg btn-primary" data-toggle="modal" data-target="#eventModal" >+ add new event</button>
             </div>
-      
+           
+
+</div>
+</div>
+
+   
 <!-- code for modal -->
   <div class= "container">
 	<div class= "col-sm-12 col-lg-6"> 
@@ -96,7 +106,7 @@
 		            <div class='container'>
 		            <div class='row'>
 		                
-				                <div class= "col-sm-3 col-lg-4">
+				                <div class= "col-sm-12 col-lg-4">
 				                <form id="event_details">
 				                	 <label for="theme" col-form-label">THEME</label>
 				                	  <input class="USERNAME-name form-control" type="text" placeholder="theme" name="event_theme" id="event_theme" required> <br>
@@ -118,6 +128,39 @@
    </div>
 
 </div>
+</div>
+
+<!-- update event -->
+<div class="modal fade" id="editeventmodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">UPDATE EVENT DETAILS</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+           <div class= "col-sm-3 col-lg-4">
+				                <form id="eventdetails">
+				                	<label for="id" col-form-label">id</label>
+				                	  <input class="event-theme form-control" type="text" placeholder="id" name="eventid" id="eventid" required> <br>
+				                	 <label for="theme" col-form-label">THEME</label>
+				                	  <input class="event-theme form-control" type="text" placeholder="theme" name="eventtheme" id="eventtheme" required> <br>
+				 	
+				                	  <label for="example-date-input" class=" col-form-label"> DATE</label>
+								    	<input class="form-control" type="date" placeholder="dd/mm/yy" name="eventdate" id="eventdate" required> <br>
+									<label for="example-venue-input" class=" col-form-label"> VENUE</label>
+										<input class="form-control" type="text" placeholder="venue" name="eventvenue" id="eventvenue" required> <br>	
+										</form>	 				 		
+        
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" id="updateevent"class="btn btn-primary">update</button>
+      </div>
+    </div>
+  </div>
 </div>
 
   

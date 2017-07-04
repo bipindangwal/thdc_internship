@@ -22,16 +22,48 @@
   			break;
 
   case 'rsvp':
-        print json_encode(rsvplink($_POST["savedemail"])) ;
+        rsvplink($_POST["savedemail"]) ;
         break;
+
+
 case 'idrupdate':
 
           print json_encode(idupdates($_POST["idupdates"])) ;
           break;
-  case 'updateguest':
 
-            print json_encode(updatingguest($_POST["id"])) ;
+case 'updateguest':
+         updating_guest($_POST["id"]) ;
           break;
+
+
+  case 'updatingguest':
+            print json_encode(updating($_POST["mguestname"],$_POST["memail"],$_POST["mgender"],$_POST["mstatus"])) ;
+          break;
+  case 'updateevent':
+          eventupdate($_POST["id"]);
+          break;
+  case 'savingeventupdate':
+          print json_encode(eventupdatesave($_POST["eventid"],$_POST["eventtheme"],$_POST["eventdate"],$_POST["eventvenue"]));
+          break;
+   case 'eventdelete':
+        event_delete($_POST["event_id"]);
+        break;  
+  case'guestdelete' :
+        guest_delete($_POST["guest_id"]);
+        break;  
+  case 'reqestingguestdelete' :
+
+        deleterequestingguest($_POST["guest_id"]);
+        break;
+  case 'guest_list':
+        fetch_guest_db();
+        break;
+  case 'fetch_event':
+        fetch_event_db();
+        break;
+  case 'fetch_request_guest':
+        fetch_request_guest_db();
+        break;                
 
  default:  echo"invalid entry";
  	break;

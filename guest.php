@@ -1,6 +1,6 @@
 <html>
 <head>
-
+<link rel="stylesheet" type="text/css" href="style.css">
 </head>
 
 <body>
@@ -23,9 +23,16 @@
 
  </nav><hr>
 
- <hr><br>
+ <hr><br> <br> <br> <br>
 
  <h1> <center>ADMIN PANEL</center></h1>
+
+<br> <br> 
+
+
+   	<div> <center>
+						<button type="button"   value="addguestbttn" name="event" class="btn btn-success" data-toggle="modal" data-target="#addguestModal">ADD NEW GUEST</button> <br> <br>
+	</center></div> 
 
     <div class="container-fluid">
      <div calss= "row">
@@ -34,101 +41,14 @@
      		<div class= "col-sm-11 col-md-8 col-lg-6"> 
 
      		<h3 style="font-family: georgia;">UPCOMING EVENT GUEST LIST </h3><br>
-     		<div style="margin-right: 3px">
-
-				<?php
-								    $con= mysqli_connect('localhost','root', '','guestinfo') or
-								die ("not connected");
-							echo "<table class= table table-bordered >";
-								echo "<tr>";
-									echo "<th>";
-										echo "ID";
-									echo "</th>";
-									echo "<th>";
-										echo "GUEST NAME";
-									echo "</th>";
-									echo "<th>";
-										echo "EMAIL ID";
-									echo "</th>";
-									echo "<th>";
-										echo "gender";
-									echo "</th>";
-									echo "<th>";
-										echo "status";
-									echo "</th>";
-								echo "</tr>";
-								$con= mysqli_connect('localhost','root', '','guestinfo') or
-								die ("not connected");
-
-								$sql = "SELECT * FROM guestlist ORDER BY id DESC ";
-
-								$record = mysqli_query($con,$sql);
-
-								while ($data= mysqli_fetch_assoc($record))
-								 {
-								         
-								        echo "<tr>";
-										echo "<td>".$data['id']."</td>";  
-								        echo "<td>".$data['guestname']."</td>";
-								        echo "<td>".$data['email']."</td>";
-								        echo "<td>".$data['gender']."</td>"; 
-								        echo "<td>".$data['status']."</td>";
-
-								        echo "<td><button id=".$data['id']." type='button' data-toggle='modal' data-target='#editmodal' class='guestupdate btn btn-primary' >Edit</button> </td>";
-
-								         echo "</tr>";
+     		<div id="guest_list"></div>
+		</form>
 
 
-
-
-									}
-
-							echo"</table>";
-
-				 ?> 
-</div>
-</div>
-<div class="modal fade" id="editmodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-       <label for="guest-name" class="col-8 col-form-label"> GUEST's NAME</label>
-									 <div class="col-12">
-					   				 <input class="theme-name form-control" type="text" name="guestname" id="mguestname" required> 
-					   				 </div><br>	  
-					   				  <label for="example-email-input" class=" col-form-label"> Email</label>
-								     <div class="col-12">
-					   				 <input class="guest-email form-control" type="email"  name="memail" id="memail" required>
-				                	</div><br>
-				                	<label class="radio-inline">
-								      <input type="radio"  value="male"  name="mgender" required> male </label>
-									<label class="radio-inline">
-								      	<input type="radio"  value="female" name="mgender" required> female </label>
-								     <div class="col-12">
-								    <input class="guest-status form-control" type="text"  name="status" id="mstatus">
-				                	</div><br>		
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">UPDATE</button>
-      </div>
-    </div>
-  </div>
 </div>
 
-    <!-- adding guest through modal -->
-
-
-
-
-		<div class= "col-sm-11 col-md-8 col-lg-6"> 
-		<div style="margin-left: 80px">
+<div class= "col-sm-11 col-md-8 col-lg-6"> 
+		<div style="margin-left: 1px">
 
      		   <h3 style="font-family: georgia;"">REQUESTED INVITES </h3> <br>
 
@@ -151,9 +71,8 @@
 										echo "GENDER";
 									echo "</th>";
 									echo "<th>";
-										echo "CONFIRMATION";
+										echo "STATUS";
 									echo "</th>";
-
 								echo "</tr>";
 								$con= mysqli_connect('localhost','root', '','guestinfo') or
 								die ("not connected");
@@ -170,8 +89,10 @@
 											<td> '.$row['email']. '</td>
 											<td> '.$row['gender']. '</td>
 											<td> '.$row['status']. '</td>
-											<td> <button type=button  class="edit" > EDIT </button></td>
-											</tr>';
+											<td> <button type=button  class="edit btn btn-success"> Approve </button></td>';
+											
+											echo "<td><button id=".$row['id']." type='button' class='deletrequestingguest btn btn-danger' >Reject</button> </td>";
+										echo	'</tr>';
 									}
 							echo"</table>"; 
 				 ?> 
@@ -179,12 +100,106 @@
 				</div>
 			</form>
 				
-			</div>
+			
 		</div>
-  
-   	<div> 
-						<button type="button"   value="addguestbttn" name="event" class="btn btn-primary" data-toggle="modal" data-target="#addguestModal">+ADD NEW GUEST</button>
-    			</div>
+	</div>
+  <br><hr><br> 
+
+
+
+<div class="container-fluid">
+
+
+ <h3 style="font-family: georgia;"">DELETED REQUESTS AND GUEST </h3> <br>
+<div class= "col-sm-11 col-md-8 col-lg-6"> 
+
+				<?php
+								    $con= mysqli_connect('localhost','root', '','guestinfo') or
+								die ("not connected");
+							echo "<table class= table table-bordered >";
+								echo "<tr>";
+									echo "<th>";
+										echo "ID";
+									echo "</th>";
+									echo "<th>";
+										echo "GUEST NAME";
+									echo "</th>";
+									echo "<th>";
+										echo "EMAIL ID";
+									echo "</th>";
+									echo "<th>";
+										echo "GENDER";
+									echo "</th>";
+									
+
+								echo "</tr>";
+								$con= mysqli_connect('localhost','root', '','guestinfo') or
+								die ("not connected");
+
+								$sql = "SELECT * FROM deletedrecords ORDER BY id DESC ";
+
+								$record = mysqli_query($con,$sql);
+
+								while ($row= mysqli_fetch_assoc($record))
+								 {
+									echo '<tr>
+											<td class="newguestid"> '.$row['id']. '</td>
+											<td> '.$row['name']. '</td>
+											<td> '.$row['email']. '</td>
+											<td> '.$row['gender']. '</td>';
+											
+										echo	'</tr>';
+									}
+							echo"</table>"; 
+				 ?> 
+				</div>
+				</div>	
+				</div>
+
+			</form>
+
+
+
+
+<div class="modal fade" id="editmodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+       	<form id="guestin">
+       	<label for="guest-name" class="col-form-label"> GUEST's NAME</label>
+			 <div class="col-12">
+				 <input class="form-control" type="text" name="mguestname" id="mguestname" > 
+				 </div><br>	  
+				  <label for="email" class=" col-form-label"> Email</label>
+		     <div class="col-12">
+				 <input class="guest-email form-control" type="email"  name="memail" id="memail" >
+        	</div><br>
+        	<label class="radio-inline">
+		      <input type="radio"  value="male"  name="mgender" required> male </label>
+			<label class="radio-inline">
+		      	<input type="radio"  value="female" name="mgender" required> female </label>
+		     <div class="col-12">
+		    <input class="guest-status form-control" type="text"  name="mstatus" id="mstatus">
+            </form>	
+            	</div>	
+            	<div>
+				 				<br>
+				 				<p id="updateinfopara" style="color: Red"></p>
+				 				</div> 		                			
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" id="updateinfo">UPDATE</button>
+      </div>
+    </div>
+  </div>
+</div>
 
     <!-- adding guest through modal -->
 
@@ -205,7 +220,7 @@
 		                
 				          <div class= "col-sm-3 col-lg-4">
 			                  <form id="guest_details">
-					   				 <label for="guest-name" class="col-8 col-form-label"> GUEST's NAME</label>
+					   				 <label for="guest-name" class="col-form-label"> GUEST's NAME</label>
 									 <div class="col-12">
 					   				 <input class="theme-name form-control" type="text" placeholder="guest's name" name="guestname" id="guestname" required> 
 					   				 </div><br>	  
@@ -217,6 +232,10 @@
 								      <input type="radio"  value="male"  name="gender" required> male </label>
 									<label class="radio-inline">
 								      	<input type="radio"  value="female" name="gender" required> female </label>
+								      <div><br>
+								      <p id="addguestpara" style="color: red;"></p>
+								      </div>
+
 
 				            		<div class="modal-footer">
 				                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

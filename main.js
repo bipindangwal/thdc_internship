@@ -1,6 +1,6 @@
 $(document).ready(function()
 { 
-
+fetch_guest();
 
     $(".edit").click(function(){
      console.log("inside edit2 event click ");
@@ -21,7 +21,7 @@ $(document).ready(function()
 return
     });
 
-$(".guestupdate").click(function(){
+$(".guestupdate").click(function(){    // retriving data into modal for editing
 var recievedid=$(this).attr("id");
 var action= "updateguest";
 $.ajax({
@@ -30,10 +30,16 @@ $.ajax({
          data: {action:action,id:recievedid},
          success: function(value){
             var data=value.split(",");//split where there is ,
+            console.log(value);
+            console.log(data[0]);
+            document.getElementById("mguestname").vaue=data[0];
+             document.getElementById("memail").vaue=data[1];
+              document.getElementById("mstatus").vaue=data[2];
+
+
             $('#mguestname').val(data[0]) ;
              $('#memail').val(data[1]) ;
               $('#mstatus').val(data[2]) ;
-              document.getelementByName('mgender').val(data[3]);
                     }
 
 
@@ -128,10 +134,10 @@ $("#getlinkrsvp").click(function(){
                 url: "ajax.php",
                 data: datastringg,
                 success: function(result){
-                    alert(result);
+                    $("#addguestpara").html(result);
                     document.getElementById('guestname').value = '';        //#not n use
                     document.getElementById('gemail').value = '';
-                    
+                    fetch_guest();
                 }
             });
     return false;
@@ -155,7 +161,8 @@ $("#getlinkrsvp").click(function(){
                 url: "ajax.php",
                 data: datastringu,
                 success: function(result){
-                    alert(result);
+                    $("#requestpara").html(result);
+
                     document.getElementById('guestname').value = '';        
                     document.getElementById('nemail').value = '';
                     
@@ -165,5 +172,135 @@ $("#getlinkrsvp").click(function(){
     return false;
 });
 
+
+ $("#updateinfo").click(function(){    //button call through id "modalupdate button "
+        console.log("inside guest update buttton click ");  
+        var form=$("#guestin");      
+        console.log(form);                                                               
+        var datastring = 'action=updatingguest&'+$('#guestin').serialize();                                                   // data in the form of array
+        console.log(datastring);
+
+            $.ajax({
+                type: "POST",
+                url: "ajax.php",
+                data: datastring,
+                success: function(result){
+                    $("#updateinfopara").html(result);                }
+            });
+        
+    return false;
+});
+
+$(".eventupdate").click(function(){   ///button call secure.php
+    var eventid=$(this).attr("id");
+    console.log(eventid);
+    var action= "updateevent";
+$.ajax({
+        type: "POST",
+         url: "ajax.php",
+         data: {action:action,id:eventid},
+         success: function(value){
+            var data=value.split(",");//split where there is ,
+            console.log(value);
+
+            $('#eventtheme').val(data[0]) ;
+      console.log(data[1]);
+             $('#eventdate').val(data[1]) ;
+              $('#eventvenue').val(data[2]) ;
+              $('#eventid').val(data[3]);
+                    }
+    });
+    });
+
+$("#updateevent").click(function(){
+ var form=$("#eventdetails");
+ var datastring = 'action=savingeventupdate&'+$('#eventdetails').serialize();
+ console.log(datastring);
+  $.ajax({
+        type: "POST",
+        url: "ajax.php",
+        data: datastring,
+        success: function(result){
+            alert(result);
+        }
+
+  });
+});
+
+$(".deleteevent").click(function(){
+ var event_id=$(this).attr("id");
+ var action="eventdelete";
+ $.ajax({
+        type: "POST",
+        url: "ajax.php",
+        data: {action:action,event_id:event_id},
+        success: function(result){
+            alert(result);
+        }
+
+});
+});
+
+$(".deleteguest").click(function(){
+ var guest_id=$(this).attr("id");
+ var action="guestdelete";
+ $.ajax({
+        type: "POST",
+        url: "ajax.php",
+        data: {action:action,guest_id:guest_id},
+        success: function(result){
+            alert(result);
+        }
+
+});
+});
+$(".deletrequestingguest").click(function(){
+     var guest_id=$(this).attr("id");
+     var action="reqestingguestdelete";
+     $.ajax({
+        type: "POST",
+        url: "ajax.php",
+        data: {action:action,guest_id:guest_id},
+        success: function(result){
+            alert(result);
+        }
+
+    });
+
+    });
+
+function fetch_guest(){
+    var action="guest_list";
+    $.ajax({
+        type: "POST",
+        url: "ajax.php",
+        data: {action:action},
+        success:function(value){
+            $("#guest_list").html(value);
+        }
+    });
+}
+// function fetch_event(){
+//     var action="fetch_event";
+//     $.ajax({
+//         type: "POST",
+//         url: "ajax.php",
+//         data: {action:action},
+//         success:function(value){
+//             $.("#").html(value);
+//         }
+//     })
+// }
+// function fetch_request_guest(){
+//     var action="fetch_request_guest";
+//     $.ajax({
+//         type: "POST",
+//         url: "ajax.php",
+//         data: {action:action},
+//         success:function(value){
+//             $.("#").html(value);
+//         }
+//     })
+// }
 
 })
